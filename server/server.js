@@ -28,6 +28,6 @@ app.use('/api/v1', userRouter);
 app.listen((process.env.PORT || 3000), function() {
   console.log('server listening on port ' + (process.env.PORT || 3000));
 
-  updateTinderToken('capitol hill', true);
+ //updateTinderToken('capitol hill', true);
   updateRecs('capitol hill', true);
 });

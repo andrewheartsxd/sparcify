@@ -21,7 +21,7 @@ var updateRecs = function(passedLocation, passedGender) {
     .end(function(err, res) {
       if(res.ok) {
         //res.JSON(res.body);
-        console.log(res.body);
+        console.dir(res.body.results.length);
       } else {
         console.log('Oh no! Error ' + res.text);
       }

@@ -8,6 +8,8 @@ module.exports = function(app, appSecret) {
   app.use(bodyparser.json());
 
   //development use
+  
+  //Create dummy profile in database
   //fields needed: facebookToken, facebookID, location
   app.post('/sparcify/dummyProfile', eat_auth(appSecret), function(req, res) {
     console.dir(req.body);
@@ -19,6 +21,7 @@ module.exports = function(app, appSecret) {
     });
   });
 
+  //Update dummy profile facebookToken
   app.put('/sparcify/dummyProfile/:_id', eat_auth(appSecret), function(req, res) {
     var query = {_id: req.params._id};
     DummyProf.findOneAndUpdate(query, {facebookToken: req.body.facebookToken}, {upsert: false}, function(err, doc) {
