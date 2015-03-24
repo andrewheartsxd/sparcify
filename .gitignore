@@ -1,0 +1,6 @@
+server/example_curl_requests
+server/node_modules/
+server/build/
+server/db/
+server/*.swp
+server/test2.js
