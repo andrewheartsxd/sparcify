@@ -10,7 +10,7 @@ var profileSchema = mongoose.Schema({
   coordinates: Object,
   gender: {type: Boolean, default: true},
   preference: {type: Boolean, default: false},
-  tinderRecs: Object  
+  tinderRecs: Array  
 });
 
 module.exports = mongoose.model('profile', profileSchema);

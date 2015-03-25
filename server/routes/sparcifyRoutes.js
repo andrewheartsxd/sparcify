@@ -11,7 +11,7 @@ module.exports = function(app, appSecret) {
   //development use
   
   //Create dummy profile in database
-  //fields needed: facebookToken, facebookID, location
+  //fields needed: facebookToken, facebookID, location, coordinates in format: '{"lat": latitude, "lon": longitude}'
   app.post('/sparcify/dummyProfile', eat_auth(appSecret), function(req, res) {
     console.dir(req.body);
     var newDummy = new DummyProf(req.body);

@@ -5,7 +5,9 @@ var mongoose = require('mongoose');
 var sparcifyRoutes = require('./routes/sparcifyRoutes');
 var passport = require('passport');
 var updateTinderToken = require('./lib/updateTinderToken');
+var updateLoc = require('./lib/updateLoc');
 var updateRecs = require('./lib/updateRecs');
+var calculateRatio = require('./lib/calculateRatio');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/sparcify_development');
 
@@ -28,6 +30,17 @@ app.use('/api/v1', userRouter);
 app.listen((process.env.PORT || 3000), function() {
   console.log('server listening on port ' + (process.env.PORT || 3000));
 
+ //Updates capitol hill male tinder recommendations
  //updateTinderToken('capitol hill', true);
-  updateRecs('capitol hill', true);
+ //updateLoc('capitol hill', true);
+ //updateRecs('capitol hill', true);
+
+ //Updates capitol hill female tinder recommendations
+ //updateTinderToken('capitol hill', false);
+ //updateLoc('capitol hill', false);
+ //updateRecs('capitol hill', false);
+
+ //Calculates ratio and saves to database
+ //calculateRatio('capitol hill', true, false);
+ 
 });
