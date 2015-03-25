@@ -26,7 +26,7 @@ var updateRecs = function(passedLocation, passedGender, recArray) {
         console.log(res.body.results);
         console.log('length' + res.body.results.length);
         recArray.push(res.body.results);
-
+      
       } else {
 
         console.log('Oh no! Error ' + res.text);

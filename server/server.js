@@ -38,6 +38,11 @@ app.listen((process.env.PORT || 3000), function() {
  //updateLoc('capitol hill', true);
  //updateRecs('capitol hill', true, femaleRecArray);
 //finalFemaleRecArray = finalRecs(femaleRecArray);
+  //
+ //Updates capitol hill male tinder recommendations
+ //updateTinderToken('capitol hill', true);
+ //updateLoc('capitol hill', true);
+ //updateRecs('capitol hill', true);
 
  //Updates capitol hill female tinder recommendations
  //updateTinderToken('capitol hill', false);
