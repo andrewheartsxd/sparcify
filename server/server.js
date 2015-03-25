@@ -32,17 +32,15 @@ app.listen((process.env.PORT || 3000), function() {
   console.log('server listening on port ' + (process.env.PORT || 3000));
 
   var femaleRecArray = [];
-  var finalFemaleRecArray;
+  var finalFemaleRecArray = [];
  // Updates capitol hill male tinder recommendations
  //updateTinderToken('capitol hill', true);
  //updateLoc('capitol hill', true);
- //updateRecs('capitol hill', true, femaleRecArray);
-//finalFemaleRecArray = finalRecs(femaleRecArray);
-  //
- //Updates capitol hill male tinder recommendations
- //updateTinderToken('capitol hill', true);
- //updateLoc('capitol hill', true);
- //updateRecs('capitol hill', true);
+// setTimeout(updateRecs('capitol hill', true, femaleRecArray, finalRecs, finalFemaleRecArray), 20000);
+
+ //setTimeout(updateRecs('capitol hill', true, femaleRecArray, finalRecs, finalFemaleRecArray), 60000);
+ 
+
 
  //Updates capitol hill female tinder recommendations
  //updateTinderToken('capitol hill', false);
