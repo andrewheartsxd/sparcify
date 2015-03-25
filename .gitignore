@@ -6,3 +6,4 @@ server/*.swp
 server/test2.js
 server/lib/tinderOverload.js
 server/example_curl_requests
+test.js

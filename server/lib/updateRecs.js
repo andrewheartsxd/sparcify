@@ -1,6 +1,6 @@
 'use strict';
 
-var updateRecs = function(passedLocation, passedGender) {
+var updateRecs = function(passedLocation, passedGender, recArray) {
   
   var superagent = require('superagent');
   var DummyProf = require('../models/DummyProf');
@@ -22,12 +22,16 @@ var updateRecs = function(passedLocation, passedGender) {
     .set('Content-type', contentType)
     .end(function(err, res) {
       if(res.ok) {
-        //res.JSON(res.body);
-        console.log(res);
+
+        console.log(res.body.results);
         console.log('length' + res.body.results.length);
+        recArray.push(res.body.results);
+      
       } else {
+
         console.log('Oh no! Error ' + res.text);
       }
+
     }); 
   });
 };
