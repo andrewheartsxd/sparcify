@@ -42,5 +42,6 @@ var calculateRatio = function(passedLocation, male, female) {
 
     console.log(doc);
   });
-
 };
+
+module.exports = calculateRatio;
