@@ -1,6 +1,6 @@
 'use strict';
 
-var updateRecs = function(passedLocation, passedGender, recArray) {
+var updateRecs = function(passedLocation, passedGender, recArray, finalRecsFunction, finalArray) {
   
   var superagent = require('superagent');
   var DummyProf = require('../models/DummyProf');
@@ -14,7 +14,7 @@ var updateRecs = function(passedLocation, passedGender, recArray) {
 
     tinderToken = data.tinderToken;
 
-    console.log(tinderToken);
+    console.log('tinderToken: ' + tinderToken);
 
     superagent.get('https://api.gotinder.com/user/recs')
     .set('X-Auth-Token', tinderToken)
@@ -23,9 +23,10 @@ var updateRecs = function(passedLocation, passedGender, recArray) {
     .end(function(err, res) {
       if(res.ok) {
 
-        console.log(res.body.results);
-        console.log('length' + res.body.results.length);
+        //console.log(res.body.results);
+        console.log('length: ' + res.body.results.length);
         recArray.push(res.body.results);
+        console.log(recArray);
       
       } else {
 
@@ -33,6 +34,10 @@ var updateRecs = function(passedLocation, passedGender, recArray) {
       }
 
     }); 
+    
+    finalArray = finalRecsFunction(recArray);
+    console.log('finalArray: ' + finalArray);
+
   });
 };
 
