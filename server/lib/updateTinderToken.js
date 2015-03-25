@@ -24,7 +24,6 @@ var updateTinderToken = function(passedLocation, passedGender) {
     .end(function(err, res) {
       console.log(res.ok);
       if(res.ok) {
-        //console.log('yay got ' + res.body.token);
         var query = {location: passedLocation}; 
         DummyProf.findOneAndUpdate(query, {tinderToken: res.body.token}, {upsert: false}, function(err, doc) {
           if (err) res.status(500).send({msg: 'could not update tinderToken'});
