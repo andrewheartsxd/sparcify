@@ -32,11 +32,6 @@ module.exports = function(app, appSecret) {
       res.send(doc);
     });
   });
-<<<<<<< HEAD
-//eat_auth(appSecret),
-  //retrieve recommendations
-  app.get('/sparcify/recs/:location/:gender',eat_auth(appSecret),  function(req, res) {
-=======
 
   //Create GoogleMap location in database
   //fields needed: location
@@ -51,8 +46,7 @@ module.exports = function(app, appSecret) {
   });
 
   //retrieve color 
-  app.get('/sparcify/recs/:location/:gender', eat_auth(appSecret), function(req, res) {
->>>>>>> c19753cf35cd17e665056f744d8fa879e73fa2f2
+  app.get('/sparcify/color/:location/:gender', function(req, res) {
     var query = {location: req.params.location}; 
     var gender = req.params.gender;
     console.dir(GoogleMaps);
@@ -63,7 +57,7 @@ module.exports = function(app, appSecret) {
     }); 
   });
 
-  //retrieve pictures
+  //retrieve pictures (gender set to 'true' for male, 'false' for female')
   app.get('/sparcify/pictures/:location/:gender', eat_auth(appSecret), function(req, res) {
     var query = {location: req.params.location }; 
     var gender = req.params.gender;
@@ -83,10 +77,9 @@ module.exports = function(app, appSecret) {
     console.log(query);
     Message.find(query,{_id:0, message:1},function(err, data) {
       if (err) return res.status(500).send({'msg': 'could not retrieve messages'});
-      if(data == null) return res.status(500).send({'msg': 'No Messages found'});
+      if(data === null) return res.status(500).send({'msg': 'No Messages found'});
       console.log("mesages get req"+data);
       res.json(data);
-
     }); 
   });
 
@@ -96,7 +89,7 @@ module.exports = function(app, appSecret) {
     newMessage.save(function(err,data){
       console.log('server msg - '+ data.message );
       if (err) return res.status(500).send({'msg': 'could not save Message'});
-        console.log('Message 123'+ data.message)
+        console.log('Message 123'+ data.message);
         res.json(data);
     });
 
