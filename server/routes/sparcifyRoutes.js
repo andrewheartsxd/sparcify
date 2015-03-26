@@ -49,16 +49,20 @@ module.exports = function(app, appSecret) {
   app.get('/sparcify/color/:location/:gender', function(req, res) {
     var query = {location: req.params.location}; 
     var gender = req.params.gender;
-    console.dir(GoogleMaps);
+    var genderString = gender ? 'colorFemale' : 'colorMale';
+    console.log(query);
+    console.log(gender);
+    console.log(genderString);
     GoogleMaps.findOne(query, function(err, data) {
       if (err || data === null) return res.status(500).send({'msg': 'could not retrieve recommendations'});
 
-      res.json(data['color' + gender]);
+      console.log(data[genderString]);
+      res.json({color: data[genderString]});
     }); 
   });
 
   //retrieve pictures (gender set to 'true' for male, 'false' for female')
-  app.get('/sparcify/pictures/:location/:gender', eat_auth(appSecret), function(req, res) {
+  app.get('/sparcify/pictures/:location/:gender', /*eat_auth(appSecret),*/ function(req, res) {
     var query = {location: req.params.location }; 
     var gender = req.params.gender;
     var genderString = gender ? 'femalePictures' : 'malePictures';
@@ -66,7 +70,7 @@ module.exports = function(app, appSecret) {
       if (err) return res.status(500).send({'msg': 'could not retrieve pictures'});
       if(data === null) return res.status(500).send({'msg': 'No pictures found'});
       console.dir(data[genderString]);
-      res.json(data[genderString]);
+      res.json({pictures: data[genderString]});
     }); 
   });
 
@@ -74,11 +78,9 @@ module.exports = function(app, appSecret) {
   app.get('/sparcify/messages/:location/:gender',  function(req, res) {
     var query = {location: req.params.location }; 
     var gender = req.params.gender;
-    console.log(query);
     Message.find(query,{_id:0, message:1},function(err, data) {
       if (err) return res.status(500).send({'msg': 'could not retrieve messages'});
       if(data === null) return res.status(500).send({'msg': 'No Messages found'});
-      console.log("mesages get req"+data);
       res.json(data);
     }); 
   });
@@ -87,10 +89,8 @@ module.exports = function(app, appSecret) {
   app.post('/sparcify/messages/:location/:gender', function(req,res){
     var newMessage = new Message(req.body); 
     newMessage.save(function(err,data){
-      console.log('server msg - '+ data.message );
-      if (err) return res.status(500).send({'msg': 'could not save Message'});
-        console.log('Message 123'+ data.message);
-        res.json(data);
+      if (err) return res.status(500).send({'msg': 'could not save Message'})
+      res.json(data);
     });
 
   });
