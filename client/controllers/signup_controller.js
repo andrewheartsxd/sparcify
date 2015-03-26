@@ -5,7 +5,7 @@ module.exports = function(app) {
     $scope.createNewUser = function() {
       $http({
         method: 'POST',
-        url: '/api/v1/create_user',
+        url: '/api/v1/sparcify/create_user',
         data: $scope.newUser
       })
       .error(function(data) {
@@ -13,7 +13,7 @@ module.exports = function(app) {
       })
       .success(function(data) {
         $cookies.eat = data.eat;
-        $location.path('/sparcify');
+        $location.path('/map');
       });
     };
   }]);

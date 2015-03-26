@@ -1,0 +1,9 @@
+<section data-ng-controller="PicturesController" data-ng-init="getResource()" >
+<h2> Pictures Page </h2>
+
+<ul data-ng-repeat= "pic in pictures">
+	<li>
+		<img data-ng-src="{{pic.link}}" height="100" width="100">
+	</li>
+</ul>
+</section>

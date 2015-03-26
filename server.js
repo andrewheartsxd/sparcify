@@ -11,14 +11,16 @@ var calculateRatio = require('./server/lib/calculateRatio');
 var finalRecs = require('./server/lib/finalRecs');
 var storePics = require('./server/lib/storePics');
 
+
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/sparcify_development');
 
 var app = express();
+
+app.use(express.static(__dirname+"/build"));
+
 app.set('appSecret', process.env.SECRET || 'bullseye');
 app.use(passport.initialize());
 require('./server/lib/passport_strat')(passport);
-
-//app.use(express.static(__dirname + '/public'));
 
 var sparcifyRouter = express.Router();
 var userRouter = express.Router();
@@ -31,6 +33,7 @@ app.use('/api/v1', userRouter);
 
 app.listen((process.env.PORT || 3000), function() {
   console.log('server listening on port ' + (process.env.PORT || 3000));
+
 
   var femaleRecArray = [];
   var finalFemaleRecArray = [];
@@ -67,7 +70,4 @@ app.listen((process.env.PORT || 3000), function() {
  //storePics('capitolhill', false);
  
 });
-
-
-
 

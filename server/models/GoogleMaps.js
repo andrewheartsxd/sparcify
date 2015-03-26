@@ -7,10 +7,12 @@ var mapSchema = mongoose.Schema({
   location: String,
   malePictures: Array,
   femalePictures: Array,
+
   ratioMale: Number,
   ratioFemale: Number,
   colorMale: String,
-  colorFemale: String
+  colorFemale: String, 
+  messages:Array
 });
 
 module.exports = mongoose.model('location', mapSchema);
