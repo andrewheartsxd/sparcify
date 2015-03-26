@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     browserify: {
       dev: {
-        src: ['client/**/*.js'],
+        src: ['client/**/*.js', 'client/*.js'],
         dest: 'build/bundle.js'
       },
       test: {
