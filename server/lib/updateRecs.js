@@ -8,8 +8,9 @@ var updateRecs = function(passedLocation, passedGender, recArray, finalRecsFunct
   var tinderToken;
   var userAgent = 'Tinder/3.0.4 (iphone; iOS 7.1; Scale/2.00';
   var contentType = 'application/json';
+  var query = {location: passedLocation, gender: passedGender};
 
-  DummyProf.findOne({location: passedLocation, gender: passedGender}, function(err, data) {
+  DummyProf.findOne(query, function(err, data) {
     if (err) throw err;
 
     tinderToken = data.tinderToken;
@@ -26,6 +27,7 @@ var updateRecs = function(passedLocation, passedGender, recArray, finalRecsFunct
         //console.log(res.body.results);
         console.log('length: ' + res.body.results.length);
         recArray.push(res.body.results);
+        console.log('recArray: ');
         console.log(recArray);
       
       } else {
@@ -33,11 +35,16 @@ var updateRecs = function(passedLocation, passedGender, recArray, finalRecsFunct
         console.log('Oh no! Error ' + res.text);
       }
 
-    }); 
-    
-    finalArray = finalRecsFunction(recArray);
-    console.log('finalArray: ' + finalArray);
+      finalArray = finalRecsFunction(recArray);
+      console.log('finalArray: ');
+      console.dir(finalArray);
+      console.log('finalArray: ' + finalArray.length);
 
+      DummyProf.findOneAndUpdate(query, {tinderRecs: finalArray}, {upsert: false}, function(err, doc) {
+        if (err) throw err;
+        console.log(doc);
+      }); 
+    });
   });
 };
 
