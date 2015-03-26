@@ -32,8 +32,8 @@ sparcify.config(['$routeProvider', function($routeProvider) {
       controller  :'MessagesController',
       templateUrl :'./views/messages.html'
   })
-  
-  .when('/about', { 
+
+  .when('/about', {
     templateUrl: './views/about.html'
   })
   .when('/signup', {
@@ -43,6 +43,10 @@ sparcify.config(['$routeProvider', function($routeProvider) {
   .when('/signin', {
     templateUrl: './views/signin.html',
     controller: 'signinController'
+  })
+  .when('/sparcify/recs/:location/:gender', {
+    templateUrl: './views/map.html',
+    controller: 'mapController'
   })
   .when('/', {
     redirectTo: '/signin'

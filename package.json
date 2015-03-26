@@ -32,6 +32,7 @@
     "chai-passport-strategy": "^0.2.0",
     "eat": "^0.1.1",
     "express": "^4.11.2",
+    "lodash": "^3.6.0",
     "mongoose": "^3.8.23",
     "passport": "^0.2.1",
     "passport-http": "^0.2.2",
