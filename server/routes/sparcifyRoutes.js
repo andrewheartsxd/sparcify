@@ -49,11 +49,15 @@ module.exports = function(app, appSecret) {
   app.get('/sparcify/color/:location/:gender', function(req, res) {
     var query = {location: req.params.location}; 
     var gender = req.params.gender;
-    console.dir(GoogleMaps);
+    var genderString = gender ? 'colorFemale' : 'colorMale';
+    console.log(query);
+    console.log(gender);
+    console.log(genderString);
     GoogleMaps.findOne(query, function(err, data) {
       if (err || data === null) return res.status(500).send({'msg': 'could not retrieve recommendations'});
 
-      res.json(data['color' + gender]);
+      console.log(data[genderString]);
+      res.json({color: data[genderString]});
     }); 
   });
 
@@ -65,7 +69,8 @@ module.exports = function(app, appSecret) {
     GoogleMaps.findOne(query,function(err, data) {
       if (err) return res.status(500).send({'msg': 'could not retrieve pictures'});
       if(data === null) return res.status(500).send({'msg': 'No pictures found'});
-      res.json(data[genderString]);
+      console.dir(data[genderString]);
+      res.json({pictures: data[genderString]});
     }); 
   });
 
