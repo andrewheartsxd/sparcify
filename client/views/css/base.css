@@ -25,6 +25,10 @@ a {
   color: white;
 }
 
+input {
+  color: black;
+}
+
 }
 select {
   background-color: #FFE5BD;
