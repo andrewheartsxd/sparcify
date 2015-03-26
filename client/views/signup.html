@@ -1,11 +1,24 @@
-<section data-ng-controller="signupController">
-  <a data-ng-href="/#/signin">Sign in to existing user</a>
+<section class="grid-80 sectionMod nonFloat" data-ng-controller="signupController">
   <h1>Create New User</h1>
   <form name="signupform">
-    <label for="email">email</label>
-    <input id="email" type="text" required data-ng-model="newUser.email">
-    <label for="password">password</label>
-    <input id="password" type="password" required data-ng-model="newUser.password">
-    <button data-ng-disabled="!signupform.$valid" data-ng-click="createNewUser()">Create User</button>
+    <ul>
+      <li>
+        <label for="email">email</label>
+        <input class="mobile-grid-60 nonFloat" id="email" type="text" required data-ng-model="newUser.email">
+      </li>
+      <li>
+        <label for="password">password</label>
+        <input class="mobile-grid-60 nonFloat" id="password" type="password" required data-ng-model="newUser.password">
+      </li>
+      <li>
+        <button data-ng-disabled="!signupform.$valid" data-ng-click="createNewUser()">Create User</button>
+      </li>
+      <li>
+        <p>-- OR --</p>
+        <img src="views/images/facebook.png"/>
+        <img src="views/images/google.png"/>
+      </li>
+    </ul>
+    <a data-ng-href="/#/signin">Existing User?</a>
   </form>
 </section>

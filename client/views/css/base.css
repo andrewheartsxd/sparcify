@@ -1,0 +1,51 @@
+body {
+  font-family: applegothic;
+  text-align: center;
+  background-color:#FFBD58;
+}
+
+header {
+  padding: .4em;
+}
+
+h2 {
+  margin: .2em;
+  color: white;
+}
+
+button {
+  background-color: #4E86C5;
+  color: white;
+  padding: .5em;
+  margin: .6em;
+  border-radius: 10px;
+}
+
+a {
+  color: white;
+}
+
+}
+select {
+  background-color: #FFE5BD;
+}
+
+label {
+  text-align: center;
+  display: block;
+}
+
+option {
+  background-color: #A3BCD7;
+  padding: 2em;
+}
+
+footer {
+  background-color: #FFE5BD;
+}
+
+li {
+  margin: .8em;
+  color: white;
+  font-size: 1.8em;
+}
