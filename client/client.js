@@ -9,13 +9,31 @@ var sparcify  = angular.module('sparcify', ['ngRoute', 'base64', 'ngCookies']);
 
 require('./users')(sparcify);
 
+// services
+require('./services/resources_routes')(sparcify);
+
+//Controller 
+require('./controllers/mapTest_controller')(sparcify);
+require('./controllers/pictures_controller')(sparcify);
+require('./controllers/messages_controller')(sparcify);
+
+//Routes
 sparcify.config(['$routeProvider', function($routeProvider) {
   $routeProvider
-  .when('/sparcify', {
-    templateUrl:'./views/sparcify.html'
+  .when('/map', {
+    templateUrl:'./views/mapTest.html', 
+    controller:'MapController'
   })
-  
-  .when('/about', { 
+  .when('/pictures/:location/:gender', {
+      controller  :'PicturesController',
+      templateUrl :'./views/pictures.html'
+  })
+  .when('/messages/:location/:gender', {
+      controller  :'MessagesController',
+      templateUrl :'./views/messages.html'
+  })
+
+  .when('/about', {
     templateUrl: './views/about.html'
   })
   .when('/signup', {
@@ -25,6 +43,10 @@ sparcify.config(['$routeProvider', function($routeProvider) {
   .when('/signin', {
     templateUrl: './views/signin.html',
     controller: 'signinController'
+  })
+  .when('/sparcify/recs/:location/:gender', {
+    templateUrl: './views/map.html',
+    controller: 'mapController'
   })
   .when('/', {
     redirectTo: '/signin'

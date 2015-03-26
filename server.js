@@ -11,14 +11,16 @@ var calculateRatio = require('./server/lib/calculateRatio');
 var finalRecs = require('./server/lib/finalRecs');
 var storePics = require('./server/lib/storePics');
 
+
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/sparcify_development');
 
 var app = express();
+
+app.use(express.static(__dirname+"/build"));
+
 app.set('appSecret', process.env.SECRET || 'bullseye');
 app.use(passport.initialize());
 require('./server/lib/passport_strat')(passport);
-
-//app.use(express.static(__dirname + '/public'));
 
 var sparcifyRouter = express.Router();
 var userRouter = express.Router();
@@ -32,16 +34,17 @@ app.use('/api/v1', userRouter);
 app.listen((process.env.PORT || 3000), function() {
   console.log('server listening on port ' + (process.env.PORT || 3000));
 
+
   var femaleRecArray = [];
   var finalFemaleRecArray = [];
   var maleRecArray = [];
   var finalMaleRecArray = [];
 
-  var updateRecsTimeoutFunction1 = function() { updateRecs('capitol hill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
-  var updateRecsTimeoutFunction2 = function() { updateRecs('capitol hill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
+  var updateRecsTimeoutFunction1 = function() { updateRecs('capitolhill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
+  var updateRecsTimeoutFunction2 = function() { updateRecs('capitolhill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
 
-  var updateRecsTimeoutFunction3 = function() { updateRecs('capitol hill', false, maleRecArray, finalRecs, finalMaleRecArray);};
-  var updateRecsTimeoutFunction4 = function() { updateRecs('capitol hill', false, maleRecArray, finalRecs, finalMaleRecArray);};
+  var updateRecsTimeoutFunction3 = function() { updateRecs('capitolhill', false, maleRecArray, finalRecs, finalMaleRecArray);};
+  var updateRecsTimeoutFunction4 = function() { updateRecs('capitolhill', false, maleRecArray, finalRecs, finalMaleRecArray);};
 
  // Updates capitol hill male tinder token & location 
   // updateTinderToken('capitol hill', true);
@@ -51,6 +54,7 @@ app.listen((process.env.PORT || 3000), function() {
   //updateLoc('capitol hill', false);
 
 
+  //Runs tinder recommendation pulls for capitol hill, defined above
   //for (var i = 0; i < 4; i++) {
   //  setTimeout(updateRecsTimeoutFunction1, 10000*i);
   //  setTimeout(updateRecsTimeoutFunction2, 20000*i);
@@ -59,14 +63,11 @@ app.listen((process.env.PORT || 3000), function() {
   //}
 
  //Calculates ratio and saves to database
- //calculateRatio('capitol hill', true, false);
+ //calculateRatio('capitolhill', true, false);
 
  //Stores male & female pictures in GoogleMaps schema
  //storePics('capitol hill', true);
  //storePics('capitol hill', false);
- 
+
 });
-
-
-
 
