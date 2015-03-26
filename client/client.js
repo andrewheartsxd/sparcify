@@ -12,7 +12,7 @@ require('./users')(sparcify);
 // services
 require('./services/resources_routes')(sparcify);
 
-//Controller 
+//Controller
 require('./controllers/mapTest_controller')(sparcify);
 require('./controllers/pictures_controller')(sparcify);
 require('./controllers/messages_controller')(sparcify);
@@ -21,7 +21,7 @@ require('./controllers/messages_controller')(sparcify);
 sparcify.config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/map', {
-    templateUrl:'./views/mapTest.html', 
+    templateUrl:'./views/staticMap.html',
     controller:'MapController'
   })
   .when('/pictures/:location/:gender', {

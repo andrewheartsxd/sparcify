@@ -17,7 +17,7 @@ module.exports = function(grunt) {
       build: {
         expand: true,
         cwd: 'client/',
-        src: '**/*.html',
+        src: ['**/*.html', '*.js'],
         dest: 'build/',
         flatten: false,
         filter: 'isFile'
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     browserify: {
       dev: {
-        src: ['client/**/*.js'],
+        src: ['client/**/*.js', 'client/*.js'],
         dest: 'build/bundle.js'
       },
       test: {
