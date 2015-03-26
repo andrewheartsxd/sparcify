@@ -29,12 +29,23 @@ module.exports = function(grunt) {
         src: ['client/**/*.js'],
         dest: 'build/bundle.js'
       },
+      test: {
+        src: ['test/client_side/*_test.js'],
+        dest: 'test/client_side/test_bundle.js'
+      },
+      karmatest: {
+        src: ['test/client_test/*_test.js'],
+        dest: 'test/client_test/karma_test_bundle.js'
+      },
       options: {
         transform: ['debowerify']
       }
     },
-
-    
+    karma: {
+      unit: {
+      configFile: 'karma.conf.js'
+      }
+    }
   });
   grunt.registerTask('build', ['clean','browserify', 'copy']);
   grunt.registerTask('build:test', ['browserify:test']);

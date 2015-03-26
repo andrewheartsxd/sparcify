@@ -6,13 +6,13 @@ module.exports = function(app) {
       $http.defaults.headers.common['Authorization'] 
       = 'Basic: ' + $base64.encode($scope.login.username 
                                       + ':' + $scope.login.password);
-      $http.get('/api/v1/sign_in')
+      $http.get('/api/v1/sparcify/sign_in')
       .error(function(data) {
         console.log(data);
       })
       .success(function(data) {
         $cookies.eat = data.eat; 
-        $location.path('/sparcify');
+        $location.path('/map');
       });
     };
   }]);

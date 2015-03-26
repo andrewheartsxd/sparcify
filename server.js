@@ -2,21 +2,21 @@
 
 var express = require('express');
 var mongoose = require('mongoose');
-var sparcifyRoutes = require('./routes/sparcifyRoutes');
+var sparcifyRoutes = require('./server/routes/sparcifyRoutes');
 var passport = require('passport');
-var updateTinderToken = require('./lib/updateTinderToken');
-var updateLoc = require('./lib/updateLoc');
-var updateRecs = require('./lib/updateRecs');
-var calculateRatio = require('./lib/calculateRatio');
+var updateTinderToken = require('./server/lib/updateTinderToken');
+var updateLoc = require('./server/lib/updateLoc');
+var updateRecs = require('./server/lib/updateRecs');
+var calculateRatio = require('./server/lib/calculateRatio');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/sparcify_development');
 
 var app = express();
-app.use(express.static(__dirname+"../build"));
+app.use(express.static(__dirname+"/build"));
 
 app.set('appSecret', process.env.SECRET || 'bullseye');
 app.use(passport.initialize());
-require('./lib/passport_strat')(passport);
+require('./server/lib/passport_strat')(passport);
 
 
 //app.use(express.static(__dirname + '/public'));
@@ -25,7 +25,7 @@ var sparcifyRouter = express.Router();
 var userRouter = express.Router();
 
 sparcifyRoutes(sparcifyRouter, app.get('appSecret'));
-require('./routes/userRoutes')(userRouter, passport, app.get('appSecret'));
+require('./server/routes/userRoutes')(userRouter, passport, app.get('appSecret'));
 
 app.use('/api/v1', sparcifyRouter);
 app.use('/api/v1', userRouter);
