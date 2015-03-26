@@ -30161,16 +30161,20 @@ require('./users')(sparcify);
 require('./services/resources_routes')(sparcify);
 
 //Controller
-require('./controllers/mapTest_controller')(sparcify);
+require('./controllers/map_controller')(sparcify);
 require('./controllers/pictures_controller')(sparcify);
 require('./controllers/messages_controller')(sparcify);
+
+
+//directives
+require('./directives/mapDirective')(sparcify);
 
 //Routes
 sparcify.config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/map', {
-    templateUrl:'./views/staticMap.html',
-    controller:'MapController'
+    controller:'MapController',
+    templateUrl:'./directives/mapDirective.html'
   })
   .when('/pictures/:location/:gender', {
       controller  :'PicturesController',
@@ -30180,7 +30184,6 @@ sparcify.config(['$routeProvider', function($routeProvider) {
       controller  :'MessagesController',
       templateUrl :'./views/messages.html'
   })
-
   .when('/about', {
     templateUrl: './views/about.html'
   })
@@ -30192,10 +30195,6 @@ sparcify.config(['$routeProvider', function($routeProvider) {
     templateUrl: './views/signin.html',
     controller: 'signinController'
   })
-  .when('/sparcify/recs/:location/:gender', {
-    templateUrl: './views/map.html',
-    controller: 'mapController'
-  })
   .when('/', {
     redirectTo: '/signin'
   })
@@ -30204,22 +30203,60 @@ sparcify.config(['$routeProvider', function($routeProvider) {
   })
 }]);
 
-},{"./../bower_components/angular-base64/angular-base64.js":1,"./../bower_components/angular-cookies/angular-cookies.js":2,"./../bower_components/angular-route/angular-route.js":4,"./../bower_components/angular/angular":5,"./controllers/mapTest_controller":7,"./controllers/messages_controller":8,"./controllers/pictures_controller":9,"./services/resources_routes":12,"./users":13}],7:[function(require,module,exports){
+},{"./../bower_components/angular-base64/angular-base64.js":1,"./../bower_components/angular-cookies/angular-cookies.js":2,"./../bower_components/angular-route/angular-route.js":4,"./../bower_components/angular/angular":5,"./controllers/map_controller":7,"./controllers/messages_controller":8,"./controllers/pictures_controller":9,"./directives/mapDirective":12,"./services/resources_routes":13,"./users":14}],7:[function(require,module,exports){
 'use strict';
 
-module.exports = function(app){
+module.exports = function (app) {
+    app.controller('MapController', ['$rootScope', '$scope', '$http', '$cookies', function ($rootScope, $scope, $http, $cookies) {
+        $scope.getColor = function() {
+
+          $scope.color = "";
+
+          $http({
+            method: "GET",
+            url: "/api/v1/sparcify/color/capitolhill/true"
+          })
+          .success(function(data) {
+            $scope.color = data;
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+        };
+
+        $scope.initMap = function () {
+
+        var myLatLng = {lat: 47.6229, lng: -122.3165};
+
+        var cityCircle;
+
+        var mapOptions = {
+          zoom: 13,
+          center: myLatLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var populationOptions = {
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: map,
+          center: myLatLng,
+          radius: 1000
+        };
+
+      cityCircle = new google.maps.Circle(populationOptions);
+
+      };
 
 
-	app.controller('MapController',['$scope', function($scope){
-		$scope.location = {	lat: "47.625305",
-							long: "-122.322183"};
 
-    //$scope.color = '#FF0000';
-
-	}]);
-
-
-
+    }]);
 };
 
 },{}],8:[function(require,module,exports){
@@ -30283,10 +30320,9 @@ module.exports = function(app){
 
 			var location=$routeParams.location;
 			var gender 	=$routeParams.gender; 
-			console.log('location gender ->'+ location + ' ' + gender);
+			//console.log('location gender ->'+ location + ' ' + gender);
 			Pictures.getResource(location,gender,function(data){
-				$scope.pictures=data;
-				console.dir(data[0].link);
+				$scope.pictures=data.pictures;
 		});
 
 	  };
@@ -30348,6 +30384,19 @@ module.exports = function(app) {
 };
 },{}],12:[function(require,module,exports){
 'use strict';
+
+module.exports = function(app) {
+    app.directive('mapDirective', function() {
+        return {
+            restrict: 'A',
+            templateUrl: './directives/mapDirective.html',
+            replace: true
+        }
+    });
+};
+
+},{}],13:[function(require,module,exports){
+'use strict';
 module.exports = function(app){
 	var handleError = function(data){
 		console.log(data); 
@@ -30382,7 +30431,7 @@ app.factory('resource', ['$http','$cookies', function($http,$cookies){
 }])
 
 }
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -30398,7 +30447,7 @@ module.exports = function(app) {
   require('./controllers/signup_controller')(app);
   require('./controllers/signin_controller')(app);
 };
-},{"./controllers/signin_controller":10,"./controllers/signup_controller":11}],14:[function(require,module,exports){
+},{"./controllers/signin_controller":10,"./controllers/signup_controller":11}],15:[function(require,module,exports){
 'use strict';
 require('../../client/client');
 require("./../../bower_components/angular-mocks/angular-mocks.js");
@@ -30438,7 +30487,7 @@ describe('messages controller', function() {
 	});
   });
 });
-},{"../../client/client":6,"./../../bower_components/angular-mocks/angular-mocks.js":3}],15:[function(require,module,exports){
+},{"../../client/client":6,"./../../bower_components/angular-mocks/angular-mocks.js":3}],16:[function(require,module,exports){
 'use strict';
 require('../../client/client');
 require("./../../bower_components/angular-mocks/angular-mocks.js");
@@ -30478,4 +30527,4 @@ describe('pictures controller', function() {
 	});
   });
 });
-},{"../../client/client":6,"./../../bower_components/angular-mocks/angular-mocks.js":3}]},{},[14,15]);
+},{"../../client/client":6,"./../../bower_components/angular-mocks/angular-mocks.js":3}]},{},[15,16]);

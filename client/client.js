@@ -13,16 +13,20 @@ require('./users')(sparcify);
 require('./services/resources_routes')(sparcify);
 
 //Controller
-require('./controllers/mapTest_controller')(sparcify);
+require('./controllers/map_controller')(sparcify);
 require('./controllers/pictures_controller')(sparcify);
 require('./controllers/messages_controller')(sparcify);
+
+
+//directives
+require('./directives/mapDirective')(sparcify);
 
 //Routes
 sparcify.config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/map', {
-    templateUrl:'./views/staticMap.html',
-    controller:'MapController'
+    controller:'MapController',
+    templateUrl:'./directives/mapDirective.html'
   })
   .when('/pictures/:location/:gender', {
       controller  :'PicturesController',
@@ -32,7 +36,6 @@ sparcify.config(['$routeProvider', function($routeProvider) {
       controller  :'MessagesController',
       templateUrl :'./views/messages.html'
   })
-
   .when('/about', {
     templateUrl: './views/about.html'
   })
@@ -43,10 +46,6 @@ sparcify.config(['$routeProvider', function($routeProvider) {
   .when('/signin', {
     templateUrl: './views/signin.html',
     controller: 'signinController'
-  })
-  .when('/sparcify/recs/:location/:gender', {
-    templateUrl: './views/map.html',
-    controller: 'mapController'
   })
   .when('/', {
     redirectTo: '/signin'
