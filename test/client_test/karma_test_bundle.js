@@ -30220,7 +30220,7 @@ module.exports = function (app) {
             $scope.color = data;
           })
           .error(function(data) {
-            console.log(data);
+            console.log(data + " This is where the error is!");
           });
         };
 
