@@ -62,7 +62,7 @@ module.exports = function(app, appSecret) {
   });
 
   //retrieve pictures (gender set to 'true' for male, 'false' for female')
-  app.get('/sparcify/pictures/:location/:gender', /*eat_auth(appSecret),*/ function(req, res) {
+  app.get('/sparcify/pictures/:location/:gender', function(req, res) {
     var query = {location: req.params.location }; 
     var gender = req.params.gender;
     var genderString = gender ? 'femalePictures' : 'malePictures';
@@ -89,7 +89,7 @@ module.exports = function(app, appSecret) {
   app.post('/sparcify/messages/:location/:gender', function(req,res){
     var newMessage = new Message(req.body); 
     newMessage.save(function(err,data){
-      if (err) return res.status(500).send({'msg': 'could not save Message'})
+      if (err) return res.status(500).send({'msg': 'could not save Message'});
       res.json(data);
     });
 
