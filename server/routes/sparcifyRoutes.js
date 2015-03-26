@@ -66,6 +66,7 @@ module.exports = function(app, appSecret) {
     var query = {location: req.params.location }; 
     var gender = req.params.gender;
     var genderString = gender ? 'femalePictures' : 'malePictures';
+    console.log(genderString);
     GoogleMaps.findOne(query,function(err, data) {
       if (err) return res.status(500).send({'msg': 'could not retrieve pictures'});
       if(data === null) return res.status(500).send({'msg': 'No pictures found'});
