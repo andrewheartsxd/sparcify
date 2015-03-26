@@ -12,10 +12,10 @@ module.exports = function (app) {
             url: "/api/v1/sparcify/color/capitolhill/true"
           })
           .success(function(data) {
-            $scope.color = data;
+            $scope.color = data.color;
           })
           .error(function(data) {
-            console.log(data + " This is where the error is!");
+            console.log(data + " The error is in the http request in the controller!");
           });
         };
 
