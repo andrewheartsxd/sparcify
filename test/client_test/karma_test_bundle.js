@@ -30281,10 +30281,9 @@ module.exports = function(app){
 
 			var location=$routeParams.location;
 			var gender 	=$routeParams.gender; 
-			console.log('location gender ->'+ location + ' ' + gender);
+			//console.log('location gender ->'+ location + ' ' + gender);
 			Pictures.getResource(location,gender,function(data){
-				$scope.pictures=data;
-				console.dir(data[0].link);
+				$scope.pictures=data.pictures;
 		});
 
 	  };
@@ -30428,9 +30427,9 @@ describe('messages controller', function() {
 	});
 
 	it('should get messages', function() {
-		$httpBackend.expectGET('/api/v1/messages/capitolhill/true').respond(200, {messages:[{link:"test message"}]});
+		$httpBackend.expectGET('/api/v1/sparcify/messages/capitolhill/true').respond(200, {messages:[{link:"test message"}]});
 		var picturesController = $ControllerConstructor('MessagesController', {$scope: $scope});
-		$scope.getResource();
+		$scope.getResource('capitolhill', 'true');
 		$httpBackend.flush();
 		expect($scope.pictures[0].link).toBe('test link');
 	});
@@ -30468,9 +30467,9 @@ describe('pictures controller', function() {
 	});
 
 	it('should get pictures', function() {
-		$httpBackend.expectGET('/api/v1/pictures/capitolhill/true').respond(200, {pictures:[{link:"test link"}]});
+		$httpBackend.expectGET('/api/v1/sparcify/pictures/capitolhill/true').respond(200, {pictures:[{link:"test link"}]});
 		var picturesController = $ControllerConstructor('PicturesController', {$scope: $scope});
-		$scope.getResource();
+		$scope.getResource('capitolhill', 'true');
 		$httpBackend.flush();
 		expect($scope.pictures[0].link).toBe('test link');
 	});

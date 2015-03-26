@@ -29,9 +29,9 @@ describe('messages controller', function() {
 	});
 
 	it('should get messages', function() {
-		$httpBackend.expectGET('/api/v1/messages/capitolhill/true').respond(200, {messages:[{link:"test message"}]});
+		$httpBackend.expectGET('/api/v1/sparcify/messages/capitolhill/true').respond(200, {messages:[{link:"test message"}]});
 		var picturesController = $ControllerConstructor('MessagesController', {$scope: $scope});
-		$scope.getResource();
+		$scope.getResource('capitolhill', 'true');
 		$httpBackend.flush();
 		expect($scope.pictures[0].link).toBe('test link');
 	});
