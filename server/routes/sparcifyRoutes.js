@@ -44,8 +44,6 @@ module.exports = function(app, appSecret) {
     });
   });
 
-
-
   //retrieve color 
   app.get('/sparcify/recs/:location/:gender', eat_auth(appSecret), function(req, res) {
     var query = {location: req.params.location}; 
@@ -61,11 +59,12 @@ module.exports = function(app, appSecret) {
   app.get('/sparcify/pictures/:location/:gender', eat_auth(appSecret), function(req, res) {
     var query = {location: req.params.location }; 
     var gender = req.params.gender;
+    var genderString = gender ? 'femalePictures' : 'malePictures';
     GoogleMaps.findOne(query,function(err, data) {
       if (err) return res.status(500).send({'msg': 'could not retrieve pictures'});
       if(data === null) return res.status(500).send({'msg': 'No pictures found'});
-      console.dir(data.pictures);
-      res.json(data.pictures);
+      console.dir(data[genderString]);
+      res.json(data[genderString]);
     }); 
   });
 };

@@ -37,16 +37,21 @@ app.listen((process.env.PORT || 3000), function() {
   var maleRecArray = [];
   var finalMaleRecArray = [];
 
-  var updateRecsTimeoutFunction1 = function() { updateRecs('capitol hill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
-  var updateRecsTimeoutFunction2 = function() { updateRecs('capitol hill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
+  var updateRecsTimeoutFunction1 = function() { updateRecs('capitolhill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
+  var updateRecsTimeoutFunction2 = function() { updateRecs('capitolhill', true, femaleRecArray, finalRecs, finalFemaleRecArray);};
 
-  var updateRecsTimeoutFunction3 = function() { updateRecs('capitol hill', false, maleRecArray, finalRecs, finalMaleRecArray);};
-  var updateRecsTimeoutFunction4 = function() { updateRecs('capitol hill', false, maleRecArray, finalRecs, finalMaleRecArray);};
+  var updateRecsTimeoutFunction3 = function() { updateRecs('capitolhill', false, maleRecArray, finalRecs, finalMaleRecArray);};
+  var updateRecsTimeoutFunction4 = function() { updateRecs('capitolhill', false, maleRecArray, finalRecs, finalMaleRecArray);};
 
- // Updates capitol hill male tinder recommendations
-  // updateTinderToken('capitol hill', true);
-  // updateLoc('capitol hill', true);
+  //Updates capitol hill male tinder token & location 
+  // updateTinderToken('capitolhill', true);
+  // updateLoc('capitolhill', true);
+  // Updates capitol hill female tinder token & location 
+  //updateTinderToken('capitolhill', false);
+  //updateLoc('capitolhill', false);
 
+
+  //Runs tinder recommendation pulls for capitol hill, defined above
   //for (var i = 0; i < 4; i++) {
   //  setTimeout(updateRecsTimeoutFunction1, 10000*i);
   //  setTimeout(updateRecsTimeoutFunction2, 20000*i);
@@ -54,16 +59,12 @@ app.listen((process.env.PORT || 3000), function() {
   //  setTimeout(updateRecsTimeoutFunction4, 40000*i);
   //}
 
- //Updates capitol hill female tinder recommendations
-  //updateTinderToken('capitol hill', false);
-  //updateLoc('capitol hill', false);
-  //updateRecs('capitol hill', false);
-
  //Calculates ratio and saves to database
- //calculateRatio('capitol hill', true, false);
+ //calculateRatio('capitolhill', true, false);
 
- //storePics('capitol hill', true);
- //storePics('capitol hill', false);
+ //Stores pictures to database
+ //storePics('capitolhill', true);
+ //storePics('capitolhill', false);
  
 });
 
