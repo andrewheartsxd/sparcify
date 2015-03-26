@@ -1,0 +1,68 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M384 0l-384 512h384l-256 512 896-640h-512l384-384z"
+				],
+				"attrs": [],
+				"tags": [
+					"power",
+					"lightning",
+					"bolt",
+					"electricity"
+				],
+				"defaultCode": 57997,
+				"grid": 16
+			},
+			"attrs": [],
+			"properties": {
+				"id": 743,
+				"order": 8,
+				"prevSize": 32,
+				"code": 59829,
+				"ligatures": "power, lightning",
+				"name": "power"
+			},
+			"setIdx": 0,
+			"setId": 0,
+			"iconIdx": 181
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icomoon"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icomoon"
+			},
+			"metrics": {
+				"emSize": 1024,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"autoHost": false,
+			"resetPoint": 58880
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 4473924,
+			"bgColor": 16777215
+		},
+		"historySize": 100,
+		"showCodes": true,
+		"quickUsageToken": {
+			"UntitledProject": "ZmJlMmRiNTkwM2YwOTcwM2IyOTU1NGU0YTY3ZTJjMDkjMSMxNDI2MTc5MzUzIyMj"
+		}
+	}
+}
