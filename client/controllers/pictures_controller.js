@@ -19,7 +19,6 @@ module.exports = function(app){
 			console.log('location gender ->'+ location + ' ' + gender);
 			Pictures.getResource(location,gender,function(data){
 				$scope.pictures=data;
-				console.dir(data[0].link);
 		});
 
 	  };
