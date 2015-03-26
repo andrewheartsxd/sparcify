@@ -16,9 +16,9 @@ module.exports = function(app){
 
 			var location=$routeParams.location;
 			var gender 	=$routeParams.gender; 
-			console.log('location gender ->'+ location + ' ' + gender);
+			//console.log('location gender ->'+ location + ' ' + gender);
 			Pictures.getResource(location,gender,function(data){
-				$scope.pictures=data;
+				$scope.pictures=data.pictures;
 		});
 
 	  };
