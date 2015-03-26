@@ -2,21 +2,21 @@
 
 var express = require('express');
 var mongoose = require('mongoose');
-var sparcifyRoutes = require('./routes/sparcifyRoutes');
+var sparcifyRoutes = require('./server/routes/sparcifyRoutes');
 var passport = require('passport');
-var updateTinderToken = require('./lib/updateTinderToken');
-var updateLoc = require('./lib/updateLoc');
-var updateRecs = require('./lib/updateRecs');
-var calculateRatio = require('./lib/calculateRatio');
-var finalRecs = require('./lib/finalRecs');
-var storePics = require('./lib/storePics');
+var updateTinderToken = require('./server/lib/updateTinderToken');
+var updateLoc = require('./server/lib/updateLoc');
+var updateRecs = require('./server/lib/updateRecs');
+var calculateRatio = require('./server/lib/calculateRatio');
+var finalRecs = require('./server/lib/finalRecs');
+var storePics = require('./server/lib/storePics');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/sparcify_development');
 
 var app = express();
 app.set('appSecret', process.env.SECRET || 'bullseye');
 app.use(passport.initialize());
-require('./lib/passport_strat')(passport);
+require('./server/lib/passport_strat')(passport);
 
 //app.use(express.static(__dirname + '/public'));
 
@@ -24,7 +24,7 @@ var sparcifyRouter = express.Router();
 var userRouter = express.Router();
 
 sparcifyRoutes(sparcifyRouter, app.get('appSecret'));
-require('./routes/userRoutes')(userRouter, passport, app.get('appSecret'));
+require('./server/routes/userRoutes')(userRouter, passport, app.get('appSecret'));
 
 app.use('/api/v1', sparcifyRouter);
 app.use('/api/v1', userRouter);
@@ -62,8 +62,8 @@ app.listen((process.env.PORT || 3000), function() {
  //Calculates ratio and saves to database
  //calculateRatio('capitol hill', true, false);
 
- storePics('capitol hill', true);
- storePics('capitol hill', false);
+ //storePics('capitol hill', true);
+ //storePics('capitol hill', false);
  
 });
 
