@@ -7,7 +7,7 @@ module.exports = function(app) {
     $scope.getColor = function() {
       $http({
         method: "GET",
-        url: /sparcify/recs/:location/:gender
+        url: '/sparcify/recs/:location/:gender'
       })
       .success(function(data) {
         $scope.color = data;

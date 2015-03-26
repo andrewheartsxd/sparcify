@@ -30180,8 +30180,8 @@ sparcify.config(['$routeProvider', function($routeProvider) {
       controller  :'MessagesController',
       templateUrl :'./views/messages.html'
   })
-  
-  .when('/about', { 
+
+  .when('/about', {
     templateUrl: './views/about.html'
   })
   .when('/signup', {
@@ -30192,6 +30192,10 @@ sparcify.config(['$routeProvider', function($routeProvider) {
     templateUrl: './views/signin.html',
     controller: 'signinController'
   })
+  .when('/sparcify/recs/:location/:gender', {
+    templateUrl: './views/map.html',
+    controller: 'mapController'
+  })
   .when('/', {
     redirectTo: '/signin'
   })
@@ -30199,6 +30203,7 @@ sparcify.config(['$routeProvider', function($routeProvider) {
     templateUrl: './views/four_oh_four.html'
   })
 }]);
+
 },{"./../bower_components/angular-base64/angular-base64.js":1,"./../bower_components/angular-cookies/angular-cookies.js":2,"./../bower_components/angular-route/angular-route.js":4,"./../bower_components/angular/angular":5,"./controllers/mapTest_controller":7,"./controllers/messages_controller":8,"./controllers/pictures_controller":9,"./services/resources_routes":12,"./users":13}],7:[function(require,module,exports){
 'use strict';
 
