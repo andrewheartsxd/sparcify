@@ -1,3 +1,9 @@
+#map-canvas {
+  margin: 20px auto 20px auto;
+  height: 600px;
+  width: 600px;
+}
+
 .logo {
   font-size: 5em;
   color: white;
