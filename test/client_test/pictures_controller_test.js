@@ -29,11 +29,15 @@ describe('pictures controller', function() {
 	});
 
 	it('should get pictures', function() {
-		$httpBackend.expectGET('/api/v1/sparcify/pictures/capitolhill/true').respond(200, {pictures:[{link:"test link"}]});
-		var picturesController = $ControllerConstructor('PicturesController', {$scope: $scope});
+		var $routeParams={};
+		$routeParams.location = 'capitolhill';
+		$routeParams.gender   = 'true';
+		$httpBackend.expectGET('/api/v1/sparcify/pictures/capitolhill/true')
+					.respond(200, {pictures:["test link"]});
+		var picturesController = $ControllerConstructor('PicturesController', {$scope: $scope,  $routeParams:$routeParams});
 		$scope.getResource('capitolhill', 'true');
 		$httpBackend.flush();
-		expect($scope.pictures[0].link).toBe('test link');
+		expect($scope.pictures[0]).toBe('test link');
 	});
   });
 });
