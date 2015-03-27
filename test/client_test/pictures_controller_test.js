@@ -29,9 +29,9 @@ describe('pictures controller', function() {
 	});
 
 	it('should get pictures', function() {
-		$httpBackend.expectGET('/api/v1/pictures/capitolhill/true').respond(200, {pictures:[{link:"test link"}]});
+		$httpBackend.expectGET('/api/v1/sparcify/pictures/capitolhill/true').respond(200, {pictures:[{link:"test link"}]});
 		var picturesController = $ControllerConstructor('PicturesController', {$scope: $scope});
-		$scope.getResource();
+		$scope.getResource('capitolhill', 'true');
 		$httpBackend.flush();
 		expect($scope.pictures[0].link).toBe('test link');
 	});
