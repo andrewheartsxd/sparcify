@@ -1,13 +1,5 @@
-<section data-ng-controller="PicturesController" data-ng-init="getResource()" class="grid-80 nonFloat sectionMod">
-<h2> Pictures Page </h2>
-
-<ul data-ng-repeat= "pic in pictures">
-	<li>
-		<img data-ng-src="{{pic}}" height="100" width="100" class="grid-15 mobile-grid-15 nonFloat">
-	</li>
-</ul>
 <section class="grid-80 nonFloat sectionMod" data-ng-controller="PicturesController" data-ng-init="getResource()" >
-<h1>Who's Around</h1>
+<h1>Who's Around Tonight</h1>
 <div data-ng-repeat= "pic in pictures">
 	<img data-ng-src="{{pic}}" class="grid-15 mobile-grid-15 nonFloat">
 </div>
