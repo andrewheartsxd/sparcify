@@ -1,6 +1,6 @@
 'use strict';
 
-process.env.MONGO_URI = 'mongodb://localhost/sparcify_development_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/sparcify_test';
 require('../../server.js');
 var DummyProf = require('../models/DummyProf');
 var GoogleMaps = require('../models/GoogleMaps');
