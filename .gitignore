@@ -7,3 +7,5 @@ server/test2.js
 server/lib/tinderOverload.js
 server/example_curl_requests
 test.js
+test/client_test/*_bundle.js
+test/client_side/test_bundle.js

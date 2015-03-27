@@ -30208,19 +30208,20 @@ sparcify.config(['$routeProvider', function($routeProvider) {
 
 module.exports = function (app) {
     app.controller('MapController', ['$rootScope', '$scope', '$http', '$cookies', function ($rootScope, $scope, $http, $cookies) {
-        $scope.getColor = function() {
 
-          $scope.color = "";
+        $scope.color = "";
+
+        $scope.getColor = function() {
 
           $http({
             method: "GET",
             url: "/api/v1/sparcify/color/capitolhill/true"
           })
           .success(function(data) {
-            $scope.color = data;
+            $scope.color = data.color;
           })
           .error(function(data) {
-            console.log(data + " This is where the error is!");
+            console.log(data + " The error is in the http request in the controller!");
           });
         };
 
@@ -30240,10 +30241,10 @@ module.exports = function (app) {
             mapOptions);
 
         var populationOptions = {
-          strokeColor: '#FF0000',
+          strokeColor: $scope.color,
           strokeOpacity: 0.8,
           strokeWeight: 2,
-          fillColor: '#FF0000',
+          fillColor: $scope.color,
           fillOpacity: 0.35,
           map: map,
           center: myLatLng,
@@ -30278,7 +30279,6 @@ module.exports = function(app){
 
 			var location=$routeParams.location;
 			var gender 	=$routeParams.gender; 
-			console.log('location gender ->'+ location + ' ' + gender);
 			Messages.getResource(location,gender,function(data){
 				console.log(data);
 				$scope.messages=data;		
@@ -30288,10 +30288,8 @@ module.exports = function(app){
 
 			var location=$routeParams.location;
 			var gender 	=$routeParams.gender; 
-			console.log('Message1 - '+ message.message );
 			message.location="capitolhill";
 			Messages.createMessage(message,location,gender ,function(data){
-				console.log('Message3 - '+ data.message );
 				$scope.messages.push(data);		
 			});
 		  };
@@ -30479,12 +30477,32 @@ describe('messages controller', function() {
 	});
 
 	it('should get messages', function() {
-		$httpBackend.expectGET('/api/v1/sparcify/messages/capitolhill/true').respond(200, {messages:[{link:"test message"}]});
-		var picturesController = $ControllerConstructor('MessagesController', {$scope: $scope});
+		var $routeParams={};
+		$routeParams.location = 'capitolhill';
+		$routeParams.gender   = 'true';
+		$httpBackend.expectGET('/api/v1/sparcify/messages/capitolhill/true').
+						respond(200,  {messages:{message:"test message"}});
+		var messageController = $ControllerConstructor('MessagesController',
+								{$scope: $scope, $routeParams:$routeParams});
 		$scope.getResource('capitolhill', 'true');
 		$httpBackend.flush();
-		expect($scope.pictures[0].link).toBe('test link');
+		expect($scope.messages.messages.message).toBe("test message");
 	});
+
+	it('should be able to create a new Message', function() {
+      var $routeParams={};
+		$routeParams.location = 'capitolhill';
+		$routeParams.gender   = 'true';
+		$httpBackend.expectPOST('/api/v1/sparcify/messages/capitolhill/true').
+						respond(200,  {location:'loc',message:"test message"});
+		var messageController = $ControllerConstructor('MessagesController', 
+								{$scope: $scope, $routeParams:$routeParams});
+      $scope.createMessage({location:'loc',message:"test message"});
+      $httpBackend.flush();
+
+      expect($scope.messages[0].message).toBe('test message'); 
+      expect($scope.messages[0].location).toBe('loc'); 
+    });
   });
 });
 },{"../../client/client":6,"./../../bower_components/angular-mocks/angular-mocks.js":3}],16:[function(require,module,exports){
@@ -30519,11 +30537,15 @@ describe('pictures controller', function() {
 	});
 
 	it('should get pictures', function() {
-		$httpBackend.expectGET('/api/v1/sparcify/pictures/capitolhill/true').respond(200, {pictures:[{link:"test link"}]});
-		var picturesController = $ControllerConstructor('PicturesController', {$scope: $scope});
+		var $routeParams={};
+		$routeParams.location = 'capitolhill';
+		$routeParams.gender   = 'true';
+		$httpBackend.expectGET('/api/v1/sparcify/pictures/capitolhill/true')
+					.respond(200, {pictures:["test link"]});
+		var picturesController = $ControllerConstructor('PicturesController', {$scope: $scope,  $routeParams:$routeParams});
 		$scope.getResource('capitolhill', 'true');
 		$httpBackend.flush();
-		expect($scope.pictures[0].link).toBe('test link');
+		expect($scope.pictures[0]).toBe('test link');
 	});
   });
 });
