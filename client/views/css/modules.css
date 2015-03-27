@@ -17,6 +17,15 @@
 
 }
 
+.controlPanel {
+  border-radius: 10px;
+  background-color: #FFCE83;
+  border: 2px solid white;
+  padding: 1em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .sectionMod {
   padding: 1em;
   border-radius: 10px;
