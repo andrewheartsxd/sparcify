@@ -8,5 +8,5 @@ server/lib/tinderOverload.js
 server/example_curl_requests
 test.js
 test/client_test/*_bundle.js
-test/client_side/test_bundle.js
+test/client_side/*_bundle.js
 test/client_test/karma_test_bundle.js

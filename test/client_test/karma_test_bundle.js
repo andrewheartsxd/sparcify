@@ -30245,11 +30245,7 @@ module.exports = function (app) {
           strokeOpacity: 0.8,
           strokeWeight: 2,
           fillColor: $scope.color,
-<<<<<<< HEAD
-          fillOpacity: 0.35,
-=======
           fillOpacity: 0.65,
->>>>>>> b1a68fd65ada3a83c01763a50bb3f60aa72854a8
           map: map,
           center: myLatLng,
           radius: 1000
