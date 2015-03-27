@@ -16,17 +16,17 @@
   <h1 class="logo mobile-grid-100">Sparc<span class="icon-power"></span>fy</h1>
   <nav>
     <ul>
-      <li>
-        <a data-ng-if="loggedIn()" data-ng-href="/#/signin" data-ng-click="logOut()">Log Out</a>
-      </li>
-      <li>
+      <li class="navBarItem">
         <a>Map</a>
       </li>
-      <li>
+      <li class="navBarItem">
         <a href="#/pictures/capitolhill/true">Faces</a>
       </li>
-      <li>
+      <li class="navBarItem">
         <a href="#/messages/capitolhill/true">Messages</a>
+      </li>
+      <li class="navBarItem">
+        <a data-ng-if="loggedIn()" data-ng-href="/#/signin" data-ng-click="logOut()">Log Out</a>
       </li>
     </ul>
   </nav>
