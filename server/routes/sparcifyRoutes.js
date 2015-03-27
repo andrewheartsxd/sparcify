@@ -49,7 +49,7 @@ module.exports = function(app, appSecret) {
   app.get('/sparcify/color/:location/:gender', function(req, res) {
     var query = {location: req.params.location}; 
     var gender = req.params.gender;
-    var genderString = gender ? 'colorFemale' : 'colorMale';
+    var genderString = JSON.parse(gender.toLowerCase()) ? 'colorFemale' : 'colorMale';
     console.log(query);
     console.log(gender);
     console.log(genderString);
@@ -65,7 +65,7 @@ module.exports = function(app, appSecret) {
   app.get('/sparcify/pictures/:location/:gender', function(req, res) {
     var query = {location: req.params.location }; 
     var gender = req.params.gender;
-    var genderString = gender ? 'femalePictures' : 'malePictures';
+    var genderString = JSON.parse(gender.toLowerCase()) ? 'femalePictures' : 'malePictures';
     console.log(genderString);
     GoogleMaps.findOne(query,function(err, data) {
       if (err) return res.status(500).send({'msg': 'could not retrieve pictures'});
