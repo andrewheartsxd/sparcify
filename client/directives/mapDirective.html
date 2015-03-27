@@ -1,16 +1,23 @@
 <div data-ng-app="sparcify">
-<section data-ng-controller="MapController" data-ng-init="getColor()">
+<h1 class="sectionHeader">Find the best neighborhood for your night. </h1>
+<section class="mapSection grid-80 nonFloat sectionMod" data-ng-controller="MapController" data-ng-init="getColor()">
   {{ initMap() }}
-    <div id="map-canvas"></div>
-    
-
+  <div class="mapImage grid-90 mobile-grid-90 nonFloat"id="map-canvas"></div>
 	<form name="mapForm">
 		<input type="radio" data-ng-model="gender.value" value="false">  Female <br/>
 		<input type="radio" data-ng-model="gender.value" value="true"> Male <br/>
-	 
-		 <a href="#/pictures/capitolhill/{{gender.value}}"> <button> View Pictures</button></a> 
-	    <a href="#/messages/capitolhill/{{gender.value}}"> <button> View Messages</button></a>
-	    </form>
+    <select>
+      <option value="0">Pick a Neighborhood</option>
+      <option value="capitolHill">Capitol Hill</option>
+      <option value="ballard">Ballard</option>
+      <option value="uDistrict">University District</option>
+      <option value="fremont">Fremont</option>
+      <option value="belltown">Belltown</option>
+    </select>
+    <a href="#/pictures/capitolhill/{{gender.value}}"> <button> View Pictures</button></a>
+	   <a href="#/messages/capitolhill/{{gender.value}}"> <button> View Messages</button></a>
+	</form>
+</section>
 </div>
 
-</section>
+
