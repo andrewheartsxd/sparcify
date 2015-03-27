@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/sparcify_devel
 
 var app = express();
 
-app.use(express.static(__dirname+"/build"));
+app.use(express.static(__dirname+ '/build'));
 
 app.set('appSecret', process.env.SECRET || 'bullseye');
 app.use(passport.initialize());
