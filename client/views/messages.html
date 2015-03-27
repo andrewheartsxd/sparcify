@@ -1,15 +1,9 @@
-<section data-ng-controller="MessagesController" data-ng-init="getResource()">
-	<h2> Message Page </h2>
-	<table>
-		<tr data-ng-repeat="i in messages">
-			<td> {{i.message}} </td>
-		</tr> 
-	</table>
-
-	<br> <br>
+<section lass="messages grid-80 sectionMod nonFloat" data-ng-controller="MessagesController" data-ng-init="getResource()">
+	<h1 class="sectionHeader">Post a Message</h1>
+		<ul data-ng-repeat="i in messages">
+			<li> {{i.message}} </li>
+		</ul>
 	<textarea rows=5 cols=60 id="newMessage" data-ng-model="newMessage.message">
-		</textarea>
-		
-
-	<button type="submit" data-ng-click="createMessage(newMessage)">Save New Message</button>
+	</textarea>
+	<button type="submit" data-ng-click="createMessage(newMessage)"class="grid-20 nonFloat">Post</button>
 </section>
