@@ -17,6 +17,15 @@
 
 }
 
+.controlPanel {
+  border-radius: 10px;
+  background-color: #FFCE83;
+  border: 2px solid white;
+  padding: 1em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .sectionMod {
   padding: 1em;
   border-radius: 10px;
@@ -41,6 +50,10 @@
   display: inline;
 }
 
+.navBarItem {
+  display: inline;
+  font-size: 1em;
+}
 @font-face {
   font-family: 'icomoon';
   src:url('icomoon/fonts/icomoon.eot?qspf18');
