@@ -2,5 +2,15 @@
 <section data-ng-controller="MapController" data-ng-init="getColor()">
   {{ initMap() }}
     <div id="map-canvas"></div>
-</section>
+    
+
+	<form name="mapForm">
+		<input type="radio" data-ng-model="gender.value" value="false">  Female <br/>
+		<input type="radio" data-ng-model="gender.value" value="true"> Male <br/>
+	 
+		 <a href="#/pictures/capitolhill/{{gender.value}}"> <button> View Pictures</button></a> 
+	    <a href="#/messages/capitolhill/{{gender.value}}"> <button> View Messages</button></a>
+	    </form>
 </div>
+
+</section>
