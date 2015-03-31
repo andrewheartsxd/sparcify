@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "mocha server/test/**/*.js",
     "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt build"
   },
