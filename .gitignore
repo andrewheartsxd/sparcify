@@ -7,6 +7,7 @@ server/*.swp
 server/test2.js
 server/lib/tinderOverload.js
 server/example_curl_requests
+server/example_superagent_requests
 test.js
 test/client_test/*_bundle.js
 test/client_side/*_bundle.js
