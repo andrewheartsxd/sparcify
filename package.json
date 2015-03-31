@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha server/test/**/*.js",
     "postinstall": "npm run build",
-    "build": "grunt build"
+    "build": "bower install && grunt build"
   },
   "author": "",
   "license": "MIT",
