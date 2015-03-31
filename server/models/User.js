@@ -11,7 +11,8 @@ var userSchema = new mongoose.Schema({
   },
   username: String,
   gender: {type: Boolean, default: true},
-  preference: {type: Boolean, default: false}
+  preference: {type: Boolean, default: false},
+  admin: {type: Boolean, default: false}
 });
 
 userSchema.methods.generateHash = function(password) {

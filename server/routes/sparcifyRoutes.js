@@ -15,36 +15,49 @@ module.exports = function(app, appSecret) {
   //fields needed: facebookToken, facebookID, location, coordinates in format: '{"lat": latitude, "lon": longitude}'
   app.post('/sparcify/dummyProfile', eat_auth(appSecret), function(req, res) {
     console.dir(req.body);
-    var newDummy = new DummyProf(req.body);
-    newDummy.save(function(err, data) {
-      if (err) return res.status(500).send({'msg': 'could not update dummyProfile'});
+    if(req.user[0].admin) {
+      var newDummy = new DummyProf(req.body);
+      newDummy.save(function(err, data) {
+        if (err) return res.status(500).send({'msg': 'could not update dummyProfile'});
 
-      res.json(data);
-    });
+        res.json(data);
+      });
+    } else {
+      return res.status(403).send({'msg': 'forbidden'});
+    }
   });
 
   //Update dummy profile facebookToken (provide facebookToken in body)
   app.put('/sparcify/dummyProfile/:_id', eat_auth(appSecret), function(req, res) {
-    var query = {_id: req.params._id};
-    DummyProf.findOneAndUpdate(query, {facebookToken: req.body.facebookToken}, {upsert: false}, function(err, doc) {
-      if (err) res.status(500).send({'msg': 'could not update dummyProfile facebookToken'});
+    if(req.user[0].admin) {
+      var query = {_id: req.params._id};
+      DummyProf.findOneAndUpdate(query, {facebookToken: req.body.facebookToken}, {upsert: false}, function(err, doc) {
+        if (err) res.status(500).send({'msg': 'could not update dummyProfile facebookToken'});
 
-      res.send(doc);
-    });
+        res.send(doc);
+      });
+    } else {
+      return res.status(403).send({'msg': 'forbidden'});
+    }
   });
 
   //Create GoogleMap location in database
   //fields needed: location
   app.post('/sparcify/newlocation', eat_auth(appSecret), function(req, res) {
     console.dir(req.body);
-    var newLocation = new GoogleMaps(req.body);
-    newLocation.save(function(err, data) {
-      if (err) return res.status(500).send({'msg': 'could not update dummyProfile'});
+    if(req.user[0].admin) {
+      var newLocation = new GoogleMaps(req.body);
+      newLocation.save(function(err, data) {
+        if (err) return res.status(500).send({'msg': 'could not update dummyProfile'});
 
-      res.json(data);
-    });
+        res.json(data);
+      });
+    } else {
+      return res.status(403).send({'msg': 'forbidden'});
+    }
   });
 
+  //public app use
   //retrieve color 
   app.get('/sparcify/color/:location/:gender', function(req, res) {
     var query = {location: req.params.location}; 
