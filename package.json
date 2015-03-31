@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha server/test/**/*.js",
-    "postinstall": "grunt build"
+    "postinstall": "npm run build",
+    "build": "grunt build"
   },
   "author": "",
   "license": "MIT",
