@@ -47,27 +47,27 @@ app.listen((process.env.PORT || 3000), function() {
   var updateRecsTimeoutFunction4 = function() { updateRecs('capitolhill', false, maleRecArray, finalRecs, finalMaleRecArray);};
 
   // Updates capitol hill male tinder token & location 
-  updateTinderToken('capitol hill', true);
-  updateLoc('capitol hill', true);
+  //updateTinderToken('capitol hill', true);
+  //updateLoc('capitol hill', true);
   // Updates capitol hill female tinder token & location 
-  updateTinderToken('capitol hill', false);
-  updateLoc('capitol hill', false);
+  //updateTinderToken('capitol hill', false);
+  //updateLoc('capitol hill', false);
 
 
   //Runs tinder recommendation pulls for capitol hill, defined above
-  for (var i = 0; i < 4; i++) {
-    setTimeout(updateRecsTimeoutFunction1, 10000*i);
-    setTimeout(updateRecsTimeoutFunction2, 20000*i);
-    setTimeout(updateRecsTimeoutFunction3, 30000*i);
-    setTimeout(updateRecsTimeoutFunction4, 40000*i);
-  }
+  //for (var i = 0; i < 4; i++) {
+  //  setTimeout(updateRecsTimeoutFunction1, 10000*i);
+  //  setTimeout(updateRecsTimeoutFunction2, 20000*i);
+  //  setTimeout(updateRecsTimeoutFunction3, 30000*i);
+  //  setTimeout(updateRecsTimeoutFunction4, 40000*i);
+  //}
 
   //Calculates ratio and saves to database
-  calculateRatio('capitolhill', true, false);
+  //calculateRatio('capitolhill', true, false);
 
   //Stores male & female pictures in GoogleMaps schema
-  storePics('capitol hill', true);
-  storePics('capitol hill', false);
+  //storePics('capitol hill', true);
+  //storePics('capitol hill', false);
 
 });
 
